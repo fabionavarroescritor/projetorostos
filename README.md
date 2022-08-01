@@ -1,4 +1,4 @@
-# projetorostos
+# projeto rostos
 subversão do algoritmo
 
 
