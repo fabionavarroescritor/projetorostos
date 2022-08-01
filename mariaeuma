@@ -1,0 +1,68 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+
+Minim minim;
+AudioPlayer play;
+FFT fft;
+
+PImage image;
+PGraphics pg;
+
+float t;
+
+void setup() {
+
+  size(1200, 710, P3D);
+  pg = createGraphics(width, height, P3D);
+  pg.smooth(8);
+
+  image = loadImage("umaemaria.jpg");
+  image.resize(width, height);
+
+  minim = new Minim(this);
+
+  play = minim.loadFile("pyramid.mp3", 2048);
+  play.loop();
+
+  fft = new FFT(play.bufferSize(), play.sampleRate());
+}
+
+void draw() {
+
+  t += 0.0002;
+
+  pg.beginDraw();
+  pg.background(0);
+
+  //beginShape(POINTS);
+
+  fft.forward(play.mix);
+
+
+  for (int x = 0; x < width; x+= 2+fft.getFreq(40)*2) {
+    for (int y = 0; y < height; y += 2+fft.getFreq(40)*2) {
+
+      color c = image.get(x, y);
+      float sat = saturation(c);
+      
+      float z = map(sat, 0, 255, 55, -55);
+      
+
+      pg.pushMatrix();
+      pg.translate(x, y, z);
+      pg.rotateX(radians(45));
+      
+      pg.noFill();
+      pg.stroke(c); 
+      pg.strokeWeight(1);
+     
+      pg.rect(0, 0, 2+fft.getFreq(440)*4, 2+fft.getFreq(442)*4);
+      pg.popMatrix();
+    }
+  }
+  pg.endDraw();
+  image(pg, 0, 0);
+
+
+  //endShape();
+}
