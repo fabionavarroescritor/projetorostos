@@ -56,7 +56,7 @@ void draw() {
       pg.stroke(c); 
       pg.strokeWeight(1);
      
-      pg.rect(0, 0, 2+fft.getFreq(440)*4, 2+fft.getFreq(442)*4);
+      pg.rect(0, 0, 2+fft.getFreq(440)*2, 2+fft.getFreq(442)*2);
       pg.popMatrix();
     }
   }
