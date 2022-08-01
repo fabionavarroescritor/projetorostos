@@ -1,0 +1,87 @@
+ArrayList<PVector> pontos = new ArrayList<PVector>();
+
+PImage img;
+PGraphics pg;
+
+
+float t;
+
+void setup() {
+
+  size(1200, 710, P3D);
+  pg = createGraphics(width, height, P3D);
+  pg.smooth(8);
+
+  img = loadImage("dylan.jpg");
+  img.resize(width, height);
+}
+
+void draw() {
+
+  pg.directionalLight(250, 106, 16, -1, 1, -1);
+  pg.directionalLight(250, 106, 16, 1, -1, 1);
+  pg.directionalLight(250, 106, 16, -1, 1, -1);
+
+  t += 0.03;
+
+  pg.beginDraw();
+  pg.background(0);
+
+  pg.translate(width/2, height/2);
+  pg.rotateY(radians(sin(t)*45));
+  pg.rotateX(radians(cos(t)*45));
+  pg.translate(-width/2, -height/2);
+
+  for (int i = 0; i < width; i += 35) {
+    for (int j = 0; j < height; j+= 35) {
+
+      pontos.add(new PVector
+        (30+noise(i*2.25+t)*sin(i+j*t)*1300,
+        30+noise(j*4.50+t)*730,
+        -580+noise(i*8.1+t)*2030));
+    }
+  }
+
+  //pg.beginShape();
+
+
+  for (PVector p : pontos) {
+
+    color c = img.get(int(p.x), int(p.y));
+    float sat = saturation(c);
+    float brt = brightness(c);
+
+     float na = noise(p.x*0.003+t)*130;
+     //float nb = noise(p.y*0.003+t)*140;
+
+    float z = map(p.x+p.y, 0, width, -5, 5);
+    float zn = map(sat, 0, 255, -150, 30);
+    float zn2 = map(p.x+p.y, 0, width, 5, -15);
+
+    pg.pushMatrix();
+
+    pg.translate(p.x, p.y, z+zn);
+
+    //pg.rotateX(radians(frameCount));
+    //pg.rotateY(radians(frameCount));
+
+    pg.noStroke();
+    pg.stroke(brt);
+    pg.strokeWeight(0.2);
+    pg.fill(c, 127+tan(sat*0.1+t)*127);
+
+    //pg.sphereDetail(8);
+    //pg.box(zn2);
+    pg.rect(na,0,zn2,zn2);
+
+    pg.popMatrix();
+  }
+  //pg.endShape();
+  pg.endDraw();
+  image(pg, 0, 0);
+  
+  if(frameRate == 4500){
+    exit();
+  }
+  saveFrame("salva/####.png");
+}
