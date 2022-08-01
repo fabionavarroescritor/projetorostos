@@ -2,7 +2,7 @@
 subversão do algoritmo
 
 
-O projeto Rostos tem como objetivo colocar um olhar reflexivo na forma como os algoritmos das redes sociais expandem o conceito de afinidade e exploração humana através da imagem, ao colocar pessoas em situação de exposição nas linhas do tempo de desconhecidos. De forma predatória e sexista usam corpos formando uma coleção de partes humanas que destilam danças, algum tipo de pulinho sexualizado ou movimentos musculares performáticos que criam um padrão corpóreo a ser seguido.
+O projeto Rostos tem como objetivo colocar um olhar reflexivo na forma como os algoritmos das redes sociais expandem o conceito de afinidade e exploração humana através da imagem, ao colocar pessoas em situação de exposição nas linhas do tempo de desconhecidos. De forma predatória e muitas vezes sexista usam corpos formando uma coleção de partes humanas que destilam danças, algum tipo de pulinho sexualizado ou movimentos musculares performáticos que criam um padrão corpóreo a ser seguido.
 Enquanto preenchem a tela espaçam todo o vazio da linha do tempo, onde na maioria das vezes as danças e pessoas desconhecidas são colocadas em nossa frente sem a menor autorização ou querer.
 
 Partindo desse pressuposto o autor cria então uma lógica invertida.
