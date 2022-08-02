@@ -11,3 +11,4 @@ Já que todos estão em processo de criação de audiência e o conceito de cele
 
 As fotos usadas neste projeto são apropriadas da internet, outra subversão à lógica das corporações donas das redes, que usam os corpos das pessoas como forma de gerar mais tráfego e mais anúncios.
 Os sketches usados serão deixados em aberto para que possam servir de base ou copiados aos interessados num repositório do GitHub de seguinte endereço:
+https://github.com/fabionavarroescritor/projetorostos
