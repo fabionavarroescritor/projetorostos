@@ -1,0 +1,76 @@
+ArrayList<PVector> pontos = new ArrayList<PVector>();
+
+PImage img;
+PGraphics pg;
+
+
+float t;
+
+void setup() {
+
+  size(1200, 710, P3D);
+  pg = createGraphics(width, height, P3D);
+  pg.smooth(8);
+
+  img = loadImage("rachelwelch.jpg");
+  img.resize(width, height);
+}
+
+void draw() {
+
+  t += 0.03;
+
+  pg.beginDraw();
+  pg.background(0);
+
+  pg.translate(width/2, 0);
+  pg.rotateY(radians(frameCount));
+  pg.translate(-width/2, 0);
+
+  for (int i = 0; i < width; i += 55) {
+    for (int j = 0; j < height; j+= 55) {
+
+      pontos.add(new PVector
+        (530+sin(i+j*155.05+t)*1300,
+        530+sin(j+i*155.5+t)*730,
+        -780+noise(i+j*155.01+t)*80));
+    }
+  }
+
+  //pg.beginShape(POINTS);
+
+
+  for (PVector p : pontos) {
+
+    color c = img.get(int(p.x), int(p.y));
+    float sat = saturation(c);
+    float brt = brightness(c);
+
+     float na = noise(p.x*0.0002+t)*30;
+
+    float z = map(p.x+p.y, 0, width, -15, 5);
+    float zn = map(brt, 0, 255, -150, 30);
+    float zn2 = map(p.x+p.y, 0, width, 1, -10);
+
+    pg.pushMatrix();
+
+    pg.translate(p.x+na, p.y+na, z+zn);
+
+    pg.stroke(c, 47+tan(sat*0.1+t)*127);
+    pg.strokeWeight(1);
+    
+     pg.fill(c);
+     pg.rect(0,0,zn2, zn2);
+    
+    pg.popMatrix();
+  }
+  
+  //pg.endShape();
+  pg.endDraw();
+  image(pg, 0, 0);
+  
+  if(frameCount == 3100){
+    exit();
+  }
+  saveFrame("salva1/####.png");
+}
